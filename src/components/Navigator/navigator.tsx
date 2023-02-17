@@ -1,4 +1,3 @@
-import { Switch } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../image/lg.png';
@@ -63,9 +62,6 @@ function Navigator() {
                   <li className="nav-item @@menu__active">
                       <Link className="nav-link" to="/">Menu</Link>
                   </li>
-                  <li className="nav-item @@menu__active">
-                    <Link className="nav-link" to="/">Menu Aptech</Link>
-                </li>
                   <li className="nav-item @@contact__active">
                       <Link className="nav-link" to="/">Contact</Link>
                   </li>

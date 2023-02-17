@@ -9888,7 +9888,7 @@ input:checked + .mode-container i.gg-moon {
   font-size: 30px;
   font-weight: 700;
   text-transform: capitalize;
-  /* color: #fff; */
+  color: var(--heading-color);
   margin: 0;
   display: grid;
   grid-auto-flow: column;
