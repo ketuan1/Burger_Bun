@@ -9830,7 +9830,8 @@ p.white {
   display: block;
   box-sizing: border-box;
   border-radius: 50%;
-  color: #eee; }
+  /* color: #eee;  */
+}
 
 .nav-fixed .gg-moon, .nav-fixed .gg-moon:after {
   color: var(--heading-color); }
@@ -9887,7 +9888,7 @@ input:checked + .mode-container i.gg-moon {
   font-size: 30px;
   font-weight: 700;
   text-transform: capitalize;
-  color: #fff;
+  /* color: #fff; */
   margin: 0;
   display: grid;
   grid-auto-flow: column;
@@ -9937,7 +9938,7 @@ input:checked + .mode-container i.gg-moon {
   padding: 10px 0 10px;
   font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  /* color: #fff; */
   letter-spacing: .85px; }
 
 .navbar-expand-lg a.nav-link.donate.btn.btn-style {
@@ -10063,7 +10064,7 @@ nav ul li a:hover {
   display: block;
   padding: 8px 0px;
   text-align: center;
-  color: #fff;
+  /* color: #fff; */
   font-size: 18px; }
 
 .nav-fixed .search-right a {
