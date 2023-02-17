@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../../image/lg.png';
 import '../Navigator/navigator.css';
 
@@ -22,22 +23,22 @@ function Navigator() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                   <li className="nav-item active">
-                      <a className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></a>
+                      <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
                   </li>
                   <li className="nav-item @@about__active">
-                      <a className="nav-link" href="about.html">About</a>
+                      <Link className="nav-link" to="/about">About</Link>
                   </li>
                   <li className="nav-item @@menu__active">
-                      <a className="nav-link" href="menu.html">Menu</a>
+                      <Link className="nav-link" to="/">Menu</Link>
                   </li>
                   <li className="nav-item @@menu__active">
-                    <a className="nav-link" href="menu_aptech.html">Menu Aptech</a>
+                    <Link className="nav-link" to="/">Menu Aptech</Link>
                 </li>
                   <li className="nav-item @@contact__active">
-                      <a className="nav-link" href="contact.html">Contact</a>
+                      <Link className="nav-link" to="/">Contact</Link>
                   </li>
                   <div className="search-right">
-                      <a href="#search" title="search"><span className="fa fa-search" aria-hidden="true"></span></a>
+                      <Link to="/" title="search"><span className="fa fa-search" aria-hidden="true"></span></Link>
                       <div id="search" className="pop-overlay">
                           <div className="popup">
                               <h4 className="mb-3">Search here</h4>
