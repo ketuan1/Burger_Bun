@@ -1,8 +1,40 @@
+import { Switch } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../image/lg.png';
 import '../Navigator/navigator.css';
 
+
 function Navigator() {
+
+    // dark more
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+
+      if (currentTheme === 'dark') {
+        setIsDarkMode(true);
+      }
+    }
+  }, []);
+
+    //function switch dark more
+  function switchTheme(event: any) {
+    if (event.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+      setIsDarkMode(true);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+      setIsDarkMode(false);
+    }
+  }
+   
     return (  
         <>
               <header id="site-header"  className= "fixed-top" >
@@ -56,13 +88,19 @@ function Navigator() {
           <div className="mobile-position">
               <nav className="navigation">
                   <div className="theme-switch-wrapper">
-                      <label className="theme-switch">
-                          <input type="checkbox" id="checkbox" />
+                    <label className="theme-switch">
+                     {/* dark more  */}
+                        <input
+                             type="checkbox"
+                             checked={isDarkMode}
+                             onChange={switchTheme}
+                             className="theme-switch"
+                            />
                           <div className="mode-container">
                               <i className="gg-sun"></i>
                               <i className="gg-moon"></i>
                           </div>
-                      </label>
+                      </label>                                 
                   </div>
               </nav>
           </div>

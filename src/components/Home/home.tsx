@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import logo from '../../image/lg.png';
 import '../Home/home.css';
 import Navigator from '../Navigator/navigator';
