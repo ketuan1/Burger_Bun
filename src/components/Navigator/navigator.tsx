@@ -60,13 +60,13 @@ function Navigator() {
                       <Link className="nav-link" to="/about">About</Link>
                   </li>
                   <li className="nav-item @@menu__active">
-                      <Link className="nav-link" to="/">Menu</Link>
+                      <Link className="nav-link" to="/menu">Menu</Link>
                   </li>
                   <li className="nav-item @@contact__active">
-                      <Link className="nav-link" to="/">Contact</Link>
+                      <Link className="nav-link" to="/contact">Contact</Link>
                   </li>
                   <div className="search-right">
-                      <Link to="/" title="search"><span className="fa fa-search" aria-hidden="true"></span></Link>
+                      <Link to="/error" title="search"><span className="fa fa-search" aria-hidden="true"></span></Link>
                       <div id="search" className="pop-overlay">
                           <div className="popup">
                               <h4 className="mb-3">Search here</h4>
