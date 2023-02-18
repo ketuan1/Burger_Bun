@@ -40,7 +40,7 @@ function Navigator() {
         <div className="container">
           <nav className="navbar navbar-expand-lg stroke px-0">
                   <h1>
-                    <a className="navbar-brand" href="index.html">
+                    <a className="navbar-brand" href="/">
                   <img src={logo} alt="burger logo" width="50px" /> Burger Bun
                   </a>
                 </h1>
@@ -66,7 +66,7 @@ function Navigator() {
                       <Link className="nav-link" to="/contact">Contact</Link>
                   </li>
                   <div className="search-right">
-                      <Link to="/error" title="search"><span className="fa fa-search" aria-hidden="true"></span></Link>
+                      <a href="#search" title="search"><span className="fa fa-search" aria-hidden="true"></span></a>
                       <div id="search" className="pop-overlay">
                           <div className="popup">
                               <h4 className="mb-3">Search here</h4>
