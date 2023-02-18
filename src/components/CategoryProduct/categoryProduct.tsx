@@ -9,7 +9,7 @@ function CategoryProduct() {
             <div className="col-lg-3 col-md-6 grids-feature">
                 <div className="area-box">
                     <img src="assets/images/burger.png" alt="burger logo" width="35px" /> 
-                    <h4><a href="#feature" className="title-head">Burgers</a></h4>
+                    <h4><Link to="/menu" className="title-head">Burgers</Link></h4>
                     <p className="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in faucibus orci dolor sit et amet.</p>
                     <Link to="/menu" className="btn btn-text">View all </Link>
                 </div>
@@ -17,7 +17,7 @@ function CategoryProduct() {
             <div className="col-lg-3 col-md-6 grids-feature mt-md-0 mt-4">
                 <div className="area-box">
                     <img src="assets/images/snack.png" alt="burger logo" width="35px" />
-                    <h4><a href="#feature" className="title-head">Snacks</a></h4>
+                    <h4><Link to="/menu" className="title-head">Snacks</Link></h4>
                     <p className="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in faucibus orci dolor sit et amet.</p>
                     <Link to="/menu" className="btn btn-text">View all </Link>
                 </div>
@@ -25,7 +25,7 @@ function CategoryProduct() {
             <div className="col-lg-3 col-md-6 grids-feature mt-lg-0 mt-4">
                 <div className="area-box">
                     <img src="assets/images/beverage.png" alt="burger logo" width="35px" />
-                    <h4><a href="#feature" className="title-head">Beverages</a></h4>
+                    <h4><Link to="/menu" className="title-head">Beverages</Link></h4>
                     <p className="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in faucibus orci dolor sit et amet.</p>
                     <Link to="/menu" className="btn btn-text">View all </Link>
                 </div>
