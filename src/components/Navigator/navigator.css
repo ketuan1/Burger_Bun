@@ -1,9 +1,23 @@
 .fixed-top {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-    background-color: var(--bg-color);
-    color: #3B3663 !important;
- } 
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: var(--bg-color);
+  color: #3b3663 !important;
+}
+
+.test {
+  text-transform: capitalize;
+  transition: all 0.5s ease;
+  padding: 10px 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  /* color: #fff; */
+  letter-spacing: 0.85px;
+}
+
+/* .nav-fixed--customer.navbar-expand-lg .navbar-nav li.nav-item.active .nav-link {
+    color: var(--primary-color);
+} */

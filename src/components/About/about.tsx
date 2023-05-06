@@ -29,13 +29,7 @@ function About() {
                         ultrices in ligula. Semper at tempufddfel. Lorem ipsum dolor sit amet consectetur adipisicing
                         elit. Non quae, fugiat consequatur voluptatem ad.</p>
                     <a className="btn btn-primary btn-style mt-md-5 mt-4 mr-4" href="about.html"> Read More </a>
-
-                    <a href="#small-dialog1" className="popup-with-zoom-anim play-view text-center position-absolute mt-md-5 mt-4">
-                        <span className="video-play-icon">
-                            <span className="fa fa-play"></span> 
-                        </span>
-                        See Our Story
-                    </a>                 
+               
                 </div>
             </div>
         </div>

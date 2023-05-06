@@ -7,8 +7,7 @@ function Footer() {
       <div className="col-lg-4 footer-grid_section_1its footer-text">
         <h2>
           <a className="logo text-wh" href="index.html">
-            <img src="assets/images/burger.png" alt="burger logo" width="35px" /> Burger Bun
-          </a>
+            <img src="assets/images/burger.png" alt="burger logo" width="35px" /> Burger Bun </a>
         </h2>
         <p className="mt-lg-4 mt-3 mb-4 pb-lg-2">We are dedicated to the safety of our guests and employees and have updated
           our safety measures. We believe in Simple, Creative, Modern and Flexible Design Standards with a Retina and Responsive Approach.
@@ -44,10 +43,9 @@ function Footer() {
           <h3>Contact Us</h3>
         </div>
         <div className="footer-text mt-4">
-          <p><strong>Address :</strong> Burger Bun, 208 Trainer Avenue street, Corner
-            Market, NY - 62617.</p>
-          <p className="my-2"><strong>Phone :</strong> <a href="tel:+12 534894364">+12 534894364</a></p>
-          <p><strong>Email :</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+          <p><strong>Address :</strong> 18 Le Van Chi, Linh Trung, TP.Thu Duc</p>
+          <p className="my-2"><strong>Phone :</strong> +123 456 789</p>
+          <p><strong>Email :</strong>tuan@gmail.com</p>
         </div>
         <div className="footer-title mt-4 pt-md-2">
           <h3>Payments we accept</h3>
@@ -86,9 +84,9 @@ function Footer() {
   </div>
 </footer>
 <div className="cpy-right text-center py-4">
-  <p>© 2020 Burger Bun. All rights reserved | Design by <a href="http://w3layouts.com"> W3layouts.</a> </p>
-        </div>
-        </>
+  <p>© 2023 Burger Bun. Design by Dang Thanh Tuan </p>
+    </div>
+</>
      );
 }
 
