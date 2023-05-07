@@ -12,9 +12,9 @@ import { getCookie } from "../util/util";
 import axios, { AxiosResponse } from "axios";
 import { StoreContext } from "../context/StoreContext";
 import Loading from "../components/Loading/Loading";
-// import Index from "../Admin/Index";
 import Homes from "../Admin/Homes";
 import Test from "../Admin/Test";
+import Products from "../Admin/Products/Products";
 
 function App() {
   const { setBasket } = useContext(StoreContext);
@@ -53,8 +53,11 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/catalog" element={<Catalog />} />
+
+        {/* admin */}
         <Route path="/admin/homes" element={<Homes />} />
         <Route path="/admin/test" element={<Test />} />
+        <Route path="/admin/products" element={<Products />} />
       </Routes>
     </div>
   );

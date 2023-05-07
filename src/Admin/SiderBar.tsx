@@ -7,7 +7,7 @@ function SiderBar() {
     <>
       <div id="mySidenav" className="sidenav">
         <p className="logo">
-          <span>M</span>-SoftTech
+          <span>Admin</span>Burger Bun
         </p>
         <Link to="/admin/test" className="icon-a">
           {/* <i className="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard */}
@@ -16,14 +16,14 @@ function SiderBar() {
         <Link to="/customers" className="icon-a">
           <i className="fa fa-users icons"></i> &nbsp;&nbsp;Customers
         </Link>
-        <Link to="/project" className="icon-a">
-          <i className="fa fa-list icons"></i> &nbsp;&nbsp;Projects
+        <Link to="/admin/products" className="icon-a">
+          <i className="fa fa-list icons"></i> &nbsp;&nbsp; Products
         </Link>
         <Link to="/order" className="icon-a">
           <i className="fa fa-shopping-bag icons"></i> &nbsp;&nbsp;Orders
         </Link>
-        <Link to="inventory" className="icon-a">
-          <i className="fa fa-tasks icons"></i> &nbsp;&nbsp;Inventory
+        <Link to="/admin/category" className="icon-a">
+          <i className="fa fa-tasks icons"></i> &nbsp;&nbsp;Category
         </Link>
         <Link to="/account" className="icon-a">
           <i className="fa fa-user icons"></i> &nbsp;&nbsp;Accounts
