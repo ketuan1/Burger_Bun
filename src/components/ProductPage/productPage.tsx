@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../model/product";
-import ProductList from "./ProductList";
 import axios, { AxiosResponse } from "axios";
 import Loading from "../Loading/Loading";
+import ProductPageList from "./productPageList";
 
-function Catalog() {
+function ProductPage() {
   const [products, setProducts] = useState<Product[]>([]);
 
   //loading
@@ -14,7 +14,7 @@ function Catalog() {
     //axios fetch API
     axios
       .get("http://localhost:8080/api/products")
-      .then((response: AxiosResponse) => setProducts(response.data.slice(0, 5)))
+      .then((response: AxiosResponse) => setProducts(response.data.slice(0, 8)))
       .finally(() => setLoading(false));
   }, []);
 
@@ -24,9 +24,9 @@ function Catalog() {
 
   return (
     <>
-      <ProductList products={products} />
+      <ProductPageList products={products} />
     </>
   );
 }
 
-export default Catalog;
+export default ProductPage;

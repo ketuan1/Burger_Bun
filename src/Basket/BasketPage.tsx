@@ -97,21 +97,6 @@ function BasketPage() {
                   <TableCell align="right">$ {row.unitPrice}</TableCell>
 
                   <TableCell align="center">
-                    {/* Button Add */}
-                    <LoadingButton
-                      loading={
-                        status.loading && status.name === "add" + row.productId
-                      }
-                      onClick={() =>
-                        handleAddItem(row.productId, "add" + row.productId)
-                      }
-                      color="secondary"
-                    >
-                      <AddCircle />
-                    </LoadingButton>
-                    {/* row. quantity */}
-                    {row.quantity}
-
                     {/* Button Remove */}
                     <LoadingButton
                       loading={
@@ -128,6 +113,21 @@ function BasketPage() {
                       color="error"
                     >
                       <RemoveCircle />
+                    </LoadingButton>
+                    {/* row. quantity */}
+                    {row.quantity}
+
+                    {/* Button Add */}
+                    <LoadingButton
+                      loading={
+                        status.loading && status.name === "add" + row.productId
+                      }
+                      onClick={() =>
+                        handleAddItem(row.productId, "add" + row.productId)
+                      }
+                      color="secondary"
+                    >
+                      <AddCircle />
                     </LoadingButton>
                   </TableCell>
 

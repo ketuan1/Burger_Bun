@@ -1,14 +1,14 @@
-import axios, { AxiosResponse } from "axios";
-import { Product } from "../../model/product";
-import { StoreContext } from "../../context/StoreContext";
-import { useContext, useState } from "react";
 import { LoadingButton } from "@mui/lab";
+import { Product } from "../../model/product";
+import { useContext, useState } from "react";
+import { StoreContext } from "../../context/StoreContext";
+import axios, { AxiosResponse } from "axios";
 
 interface Props {
   product: Product;
 }
 
-function ProductCard(props: Props) {
+function ProductPageCard(props: Props) {
   const { setBasket } = useContext(StoreContext);
   const [loading, setLoading] = useState(false);
 
@@ -36,12 +36,12 @@ function ProductCard(props: Props) {
           <h4>$ {props.product.unitPrice.toFixed(2)}</h4>
         </div>
         {/* <p>{props.product.description}</p> */}
-        {props.product.unitPrice < 20 && (
+        {/* {props.product.unitPrice < 20 && (
           <div className="home-product-item__sale-off">
             <span className="home-product-item__sale-off-percent">10%</span>
             <span className="home-product-item__sale-off-lable">Giam</span>
           </div>
-        )}
+        )} */}
         <div>
           <LoadingButton
             className="button_custom"
@@ -52,13 +52,8 @@ function ProductCard(props: Props) {
           </LoadingButton>
         </div>
       </div>
-
-      {/* <div className="home-product-item__sale-off">
-        <span className="home-product-item__sale-off-percent">10%</span>
-        <span className="home-product-item__sale-off-lable">Giam</span>
-      </div> */}
     </>
   );
 }
 
-export default ProductCard;
+export default ProductPageCard;

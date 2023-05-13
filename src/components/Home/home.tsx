@@ -3,6 +3,7 @@ import Feature from "../Feature/feature";
 import Footer from "../Footer/footer";
 import "../Home/home.css";
 import Navigator from "../Navigator/navigator";
+import ProductPage from "../ProductPage/productPage";
 
 function Home() {
   // jquery navigation scroll
@@ -114,6 +115,9 @@ function Home() {
 
       {/* components */}
       <CategoryProduct />
+
+      {/* components */}
+      <ProductPage />
 
       {/* components */}
       <Feature />
