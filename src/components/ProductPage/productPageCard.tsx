@@ -33,7 +33,7 @@ function ProductPageCard(props: Props) {
         </div>
         <div className="title_custom">
           <h3>{props.product.brand}</h3>
-          <h4>$ {props.product.unitPrice.toFixed(2)}</h4>
+          <h4>$ {props.product.unitPrice?.toFixed(2)}</h4>
         </div>
         {/* <p>{props.product.description}</p> */}
         {/* {props.product.unitPrice < 20 && (

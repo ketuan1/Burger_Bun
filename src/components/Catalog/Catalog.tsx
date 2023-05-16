@@ -9,13 +9,20 @@ function Catalog() {
 
   //loading
   const [loading, setLoading] = useState(true);
-
+  const getData = async () => {
+    let rs = await axios
+      .get("http://localhost:8080/api/products", {
+        headers: {
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Credentials': true
+        }
+      })
+      console.log(rs);
+  }
   useEffect(() => {
     //axios fetch API
-    axios
-      .get("http://localhost:8080/api/products")
-      .then((response: AxiosResponse) => setProducts(response.data.slice(0, 5)))
-      .finally(() => setLoading(false));
+    getData()
   }, []);
 
   if (loading) {

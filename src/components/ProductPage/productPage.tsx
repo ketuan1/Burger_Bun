@@ -13,7 +13,13 @@ function ProductPage() {
   useEffect(() => {
     //axios fetch API
     axios
-      .get("http://localhost:8080/api/products")
+      .get("/api/products", {
+        headers: {
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Credentials': true
+        }
+      })
       .then((response: AxiosResponse) => setProducts(response.data.slice(0, 8)))
       .finally(() => setLoading(false));
   }, []);
