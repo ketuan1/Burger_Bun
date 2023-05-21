@@ -3,6 +3,7 @@ import "../Menu/menu.css";
 import Footer from "../Footer/footer";
 import ProductCard from "../Catalog/ProductCard";
 import { Link } from "react-router-dom";
+import AllMenu from "./allMenu";
 
 function Menu() {
   return (
@@ -25,7 +26,7 @@ function Menu() {
               <div className="grids-area-hny main-cont-wthree-fea row">
                 <div className="col-lg-2 col-md-6 grids-feature">
                   <div className="icon__menu--category">
-                    <Link to="/menu">
+                    <Link to="/allMenu">
                       <i className="fa-solid fa-plate-wheat"></i>
                       <p>All</p>
                     </Link>
@@ -89,6 +90,8 @@ function Menu() {
               </div>
             </div>
           </div>
+
+          <AllMenu />
         </section>
       </div>
       <Footer />

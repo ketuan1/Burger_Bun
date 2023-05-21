@@ -1,7 +1,31 @@
 import { Container } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Product } from "../../model/product";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function ViewProducts() {
+  const { id } = useParams();
+  const [product, setProduct] = useState<Product>({
+    id: 0,
+    name: "",
+    price: 0,
+    description: "",
+    category: "",
+    image_url: "",
+    units_in_stock: 0,
+  });
+
+  useEffect(() => {
+    viewProducts();
+  }, []);
+
+  const viewProducts = async () => {
+    const resultView = await axios.get(
+      `http://localhost:8080/api/list/product/${id}`
+    );
+    setProduct(resultView.data);
+  };
   return (
     <>
       <Container>
