@@ -37,7 +37,7 @@ const Register = () => {
     return (
         <div style={{ padding: '0px 24px 48px 24px' }}>
             {
-                loading && <Loading /> 
+                loading && <Loading />
             }
             <Navigator />
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -157,7 +157,7 @@ const Register = () => {
                             navigator('/login')
                         } catch (error: any) {
                             setMsg(error?.response?.data?.message || 'Có lỗi xảy ra')
-                        }finally{
+                        } finally {
                             setLoading(false)
                         }
                     }

@@ -88,6 +88,7 @@ const Login = ({setInfoUser}:IProps) => {
                             }else{
                                 navigator("/")
                             }
+                            sessionStorage.setItem('KEY_ACCOUNT', JSON.stringify(rs?.data?.data))
                         } catch (error: any) {
                             setMsg(error?.response?.data?.message || 'Có lỗi xảy ra')
                             setOpen(true)
