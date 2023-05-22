@@ -94,7 +94,7 @@ function BasketPage() {
                   {/* <TableCell component="th" scope="row">
                   {row.imageUrl}
                 </TableCell> */}
-                  <TableCell align="right">$ {row.unitPrice}</TableCell>
+                  <TableCell align="right">$ {row.price}</TableCell>
 
                   <TableCell align="center">
                     {/* Button Remove */}
@@ -132,7 +132,7 @@ function BasketPage() {
                   </TableCell>
 
                   <TableCell align="right">
-                    $ {(row.unitPrice * row.quantity).toFixed(2)}
+                    $ {(row.price * row.quantity).toFixed(2)}
                   </TableCell>
                   <TableCell align="right">
                     <LoadingButton

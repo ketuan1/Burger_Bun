@@ -4,6 +4,7 @@ import {
   Container,
   FormControl,
   Input,
+  NativeSelect,
   TextField,
   Typography,
 } from "@mui/material";
@@ -12,18 +13,13 @@ import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Product } from "../../model/product";
+import { useEffect, useState } from "react";
+import { Category } from "../../model/category";
 
 export default function AddProducts() {
   let navigate = useNavigate();
 
-  const onFileChangeHandle = async (e: any) => {
-    const formData = new FormData();
-    formData.append("image_url", e.target.files[0]);
-    await axios
-      .post("http://localhost:8080/api/file/upload", formData)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  };
+  const [category, setCategory] = useState<Category[]>([]);
 
   const formik = useFormik<Product>({
     initialValues: {
@@ -32,8 +28,8 @@ export default function AddProducts() {
       price: 0,
       description: "",
       category: "",
-      image_url: "",
-      units_in_stock: 0,
+      imageUrl: "",
+      unitsInStock: 0,
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -46,14 +42,14 @@ export default function AddProducts() {
       category: Yup.string()
         .min(3, "Category must be 3 character!")
         .required("Category is required!"),
-      units_in_stock: Yup.number().required("Units in stock is required"),
+      unitsInStock: Yup.number().required("Units in stock is required"),
     }),
     onSubmit: async (values, e: any) => {
       const pathString = "C:\\fakepath\\";
-      values.image_url = values.image_url.replace(pathString, "");
+      values.imageUrl = values.imageUrl.replace(pathString, "");
 
       await axios
-        .post("http://localhost:8080/api/product/add", values)
+        .post(`http://localhost:8080/api/products/add`, values)
         .then((res) => console.log(res))
         .catch((err) => console.log(err.data));
 
@@ -61,6 +57,25 @@ export default function AddProducts() {
     },
     enableReinitialize: true,
   });
+
+  // image
+  const onFileChangeHandle = async (e: any) => {
+    const formData = new FormData();
+    formData.append("imageUrl", e.target.files[0]);
+    await axios
+      .post(`http://localhost:8080/api/file/upload`, formData)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const LoadCategory = async () => {
+    const listCategory = await axios.get(`http://localhost:8080/api/category`);
+    setCategory(listCategory.data);
+  };
+
+  useEffect(() => {
+    LoadCategory();
+  }, []);
 
   return (
     <>
@@ -128,31 +143,30 @@ export default function AddProducts() {
               </Typography>
             )}
 
-            <TextField
-              required
-              multiline
-              sx={{ mb: 2 }}
-              id="outlined-multiline-static"
-              rows={4}
-              label="Category"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              name="category"
-              value={formik.values.category}
-            />
-            {formik.errors.category && formik.touched.category && (
-              <Typography style={{ color: "#eb4034", margin: "0 20px 10px" }}>
-                {formik.errors.category}
-              </Typography>
-            )}
+            {/* category list */}
+            <FormControl fullWidth>
+              <NativeSelect
+                defaultValue={30}
+                inputProps={{
+                  name: "age",
+                  id: "uncontrolled-native",
+                }}
+              >
+                {category.map((value, index) => (
+                  <option key={index} value={value.id}>
+                    {value.categoryName}
+                  </option>
+                ))}
+              </NativeSelect>
+            </FormControl>
 
             <Input
               sx={{ mb: 2 }}
-              name="image_url"
+              name="imageUrl"
               type="file"
               onInput={formik.handleChange}
               onChange={onFileChangeHandle}
-              value={formik.values.image_url}
+              value={formik.values.imageUrl}
             />
 
             <TextField
@@ -163,12 +177,12 @@ export default function AddProducts() {
               onBlur={formik.handleBlur}
               type="number"
               inputProps={{ min: "0.50", step: "0.01" }}
-              name="units_in_stock"
-              value={formik.values.units_in_stock}
+              name="unitsInStock"
+              value={formik.values.unitsInStock}
             />
-            {formik.errors.units_in_stock && formik.touched.units_in_stock && (
+            {formik.errors.unitsInStock && formik.touched.unitsInStock && (
               <Typography style={{ color: "#eb4034", margin: "0 20px 10px" }}>
-                {formik.errors.units_in_stock}
+                {formik.errors.unitsInStock}
               </Typography>
             )}
 

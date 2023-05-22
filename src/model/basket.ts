@@ -1,10 +1,12 @@
 export interface BasketItem {
     productId: number;
+    userId: number;
     name: string;
-    unitPrice: number;
+    price: number;
+    description: string;
     imageUrl: string;
-    brand: string;
     category: string;
+    unitsInStock: number;
     quantity: number;
 }
 

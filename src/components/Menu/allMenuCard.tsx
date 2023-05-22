@@ -14,6 +14,7 @@ function AllMenuCard(props: Props) {
 
   const handleAddItem = (productId: number) => {
     setLoading(true);
+    // ${userInfo.id}
     axios
       .post(`baskets?productId=${productId}&quantity=1`, {})
       .then((response: AxiosResponse) => setBasket(response.data))
@@ -24,7 +25,6 @@ function AllMenuCard(props: Props) {
     <>
       <div className="area-box are-box__custom">
         <div className="img_custom">
-          {/* <img className="img_custom" src="./assets/images/g1.jpg" alt="" /> */}
           <img
             className="img_custom"
             src={`http://localhost:8080/api/file/image/${props.product.imageUrl}`}
@@ -32,8 +32,8 @@ function AllMenuCard(props: Props) {
           />
         </div>
         <div className="title_custom">
-          <h3>{props.product.brand}</h3>
-          <h4>$ {props.product.unitPrice.toFixed(2)}</h4>
+          <h3>{props.product.name}</h3>
+          <h4>$ {props.product.price.toFixed(2)}</h4>
         </div>
         {/* <p>{props.product.description}</p> */}
         {/* {props.product.unitPrice < 20 && (

@@ -19,14 +19,14 @@ export default function Products() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/product`)
+      .get(`http://localhost:8080/api/products`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err.data));
   }, [products]);
 
   const handleDelete = async (productId: number) => {
     axios
-      .delete(`http://localhost:8080/api/product/${productId}`)
+      .delete(`http://localhost:8080/api/products/${productId}`)
       .catch((err) => console.log(err));
   };
 
@@ -70,12 +70,12 @@ export default function Products() {
                 <TableCell align="center">{product.category}</TableCell>
                 <TableCell align="center">
                   <img
-                    src={`http://localhost:8080/api/file/images/${product.image_url}`}
+                    src={`http://localhost:8080/api/file/image/${product.imageUrl}`}
                     alt={`${product.name}`}
                     style={{ width: 100, height: 120, borderRadius: "10%" }}
                   />
                 </TableCell>
-                <TableCell align="center">$ {product.units_in_stock}</TableCell>
+                <TableCell align="center">$ {product.unitsInStock}</TableCell>
                 <TableCell align="center">
                   <Button
                     sx={{

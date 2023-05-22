@@ -17,8 +17,8 @@ export default function EditProducts() {
     price: 0,
     description: "",
     category: "",
-    image_url: "",
-    units_in_stock: 0,
+    imageUrl: "",
+    unitsInStock: 0,
   });
 
   const formik = useFormik<Product>({
@@ -28,8 +28,8 @@ export default function EditProducts() {
       price: product.price ?? "",
       description: product.description ?? "",
       category: product.category ?? "",
-      image_url: product.image_url,
-      units_in_stock: product.units_in_stock ?? 0,
+      imageUrl: product.imageUrl,
+      unitsInStock: product.unitsInStock ?? 0,
     },
     validationSchema: Yup.object({
       title: Yup.string()
@@ -42,7 +42,7 @@ export default function EditProducts() {
     }),
     onSubmit: async (values) => {
       await axios
-        .put(`http://localhost:8090/api/books/update/${productId}`, values)
+        .put(`http://localhost:8080/api/product/update/${productId}`, values)
         .catch((err) => console.log(err.data));
       navigate("/");
     },
@@ -142,11 +142,11 @@ export default function EditProducts() {
               type="number"
               inputProps={{ min: "0.50", step: "0.01" }}
               name="Units Stock"
-              value={formik.values.units_in_stock}
+              value={formik.values.unitsInStock}
             />
-            {formik.errors.units_in_stock && formik.touched.units_in_stock && (
+            {formik.errors.unitsInStock && formik.touched.unitsInStock && (
               <Typography style={{ color: "#eb4034", margin: "0 20px 10px" }}>
-                {formik.errors.units_in_stock}
+                {formik.errors.unitsInStock}
               </Typography>
             )}
 
