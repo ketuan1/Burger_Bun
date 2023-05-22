@@ -22,9 +22,7 @@ function Navigator() {
       }
     }
   }, []);
-
-  // Basket Counter
-  const itemCount = basket?.basketItems.reduce(
+  const itemCount = basket?.basketItem.reduce(
     (sum, item) => sum + item.quantity,
     0
   );
@@ -41,7 +39,7 @@ function Navigator() {
       setIsDarkMode(false);
     }
   }
-
+  const getInfo = sessionStorage.getItem('KEY_ACCOUNT') !== null ? JSON.parse(sessionStorage.getItem('KEY_ACCOUNT') as string) : null
   return (
     <>
       <header id="site-header" className="fixed-top">
@@ -68,7 +66,7 @@ function Navigator() {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <Link className="nav-link" to="/">
+                  <Link className="nav-link" to="/" >
                     Home <span className="sr-only">(current)</span>
                   </Link>
                 </li>
@@ -94,18 +92,27 @@ function Navigator() {
                     </Badge>
                   </Link>
                 </li>
-
-                <li className="nav-item @@basket__active">
+                <li className="nav-item @@register__active">
                   <Link className="nav-link" to="/register">
                     Register
                   </Link>
                 </li>
-
-                <li className="nav-item @@basket__active">
+                <li className="nav-item @@login__active">
                   <Link className="nav-link" to="/login">
                     Login
                   </Link>
                 </li>
+                {
+                  getInfo !== null && <li className="nav-item @@logout__active">
+                    <Link className="nav-link" to="/" onClick={() => {
+                      sessionStorage.removeItem('KEY_ACCOUNT')
+                      window.location.reload()
+                    }}>
+                      Logout
+                    </Link>
+                  </li>
+                }
+
                 {/* <div className="search-right">
                   <a href="#search" title="search">
                     <span className="fa fa-search" aria-hidden="true"></span>

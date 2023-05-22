@@ -48,10 +48,11 @@ function App() {
   if (loading) {
     return <Loading />;
   }
+  const getInfo = sessionStorage.getItem('KEY_ACCOUNT') !== null ? JSON.parse(sessionStorage.getItem('KEY_ACCOUNT') as string) : null
   return (
     <div className="App">
       <Routes>
-        {infoUser?.role?.toUpperCase() !== "ADMIN" && (
+        {(getInfo === null || infoUser?.role?.toUpperCase() !== "ADMIN") && (
           <>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -67,8 +68,7 @@ function App() {
             <Route path="/addpro" element={<AddProducts />} />
           </>
         )}
-
-        {infoUser?.role?.toUpperCase() === "ADMIN" && (
+        {getInfo?.role?.toUpperCase() === "ADMIN" && (
           <>
             <Route path="/admin/homes" element={<Homes />} />
             <Route path="/admin/test" element={<Test />} />
