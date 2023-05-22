@@ -64,7 +64,6 @@ function App() {
             <Route path="/menu" element={<Menu />} />
             <Route path="/basket" element={<BasketPage />} />
             <Route path="/catalog" element={<Catalog />} />
-            <Route path="/addpro" element={<AddProducts />} />
           </>
         )}
 
@@ -73,6 +72,7 @@ function App() {
             <Route path="/admin/homes" element={<Homes />} />
             <Route path="/admin/test" element={<Test />} />
             <Route path="/admin/products" element={<Products />} />
+            <Route path="/add" element={<AddProducts />} />
           </>
         )}
         {/* admin */}
