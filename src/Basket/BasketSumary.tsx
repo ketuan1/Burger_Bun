@@ -12,8 +12,8 @@ import {
 function BasketSummary() {
   const { basket } = useContext(StoreContext);
   const subtotal = basket
-    ? basket.basketItems.reduce(
-        (sum, item) => sum + item.quantity * item.unitPrice,
+    ? basket.basketItem.reduce(
+        (sum, item) => sum + item.quantity * item.price,
         0
       )
     : 0;

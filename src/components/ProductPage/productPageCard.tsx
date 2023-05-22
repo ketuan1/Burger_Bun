@@ -11,12 +11,16 @@ interface Props {
 function ProductPageCard(props: Props) {
   const { setBasket } = useContext(StoreContext);
   const [loading, setLoading] = useState(false);
-  const getInfo = sessionStorage.getItem('KEY_ACCOUNT') !== null ? JSON.parse(sessionStorage.getItem('KEY_ACCOUNT') as string) : null
+  const getInfo =
+    sessionStorage.getItem("KEY_ACCOUNT") !== null
+      ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
+      : null;
+
   const handleAddItem = (productId: number) => {
     setLoading(true);
     // http://localhost:8080/api/baskets/2?productId=4&quantity=1
     axios
-      .post(`/api/baskets/${getInfo?.userId}?productId=${productId}&quantity=1`, {})
+      .post(`/api/baskets/${getInfo?.id}?productId=${productId}&quantity=1`, {})
       .then((response: AxiosResponse) => setBasket(response.data))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
@@ -33,8 +37,8 @@ function ProductPageCard(props: Props) {
           />
         </div>
         <div className="title_custom">
-          <h3>{props.product.brand}</h3>
-          <h4>$ {props.product.unitPrice?.toFixed(2)}</h4>
+          <h3>{props.product.name}</h3>
+          <h4>$ {props.product.price?.toFixed(2)}</h4>
         </div>
         {/* <p>{props.product.description}</p> */}
         {/* {props.product.unitPrice < 20 && (

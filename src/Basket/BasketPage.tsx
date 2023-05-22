@@ -21,6 +21,7 @@ import { StoreContext } from "../context/StoreContext";
 import axios, { AxiosResponse } from "axios";
 import Navigator from "../components/Navigator/navigator";
 import "./BasketStyle.css";
+import { log } from "console";
 
 function BasketPage() {
   const { basket, setBasket, removeItem } = useContext(StoreContext);
@@ -29,6 +30,13 @@ function BasketPage() {
     name: "",
   });
 
+  const getInfo =
+    sessionStorage.getItem("KEY_ACCOUNT") !== null
+      ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
+      : null;
+
+  const [callApi, setCallApi] = useState(false);
+
   // add basket
   const handleAddItem = (productId: number, name: string) => {
     setStatus({
@@ -36,8 +44,11 @@ function BasketPage() {
       name: name,
     });
     axios
-      .post(`baskets?productId=${productId}&quantity=1`, {})
-      .then((response: AxiosResponse) => setBasket(response.data))
+      .post(`/api/baskets/${getInfo.id}?productId=${productId}&quantity=1`, {})
+      .then((response) => {
+        setBasket(response.data);
+        setCallApi(!callApi);
+      })
       .catch((err) => console.log(err))
       .finally(() => setStatus({ loading: false, name }));
   };
@@ -53,15 +64,26 @@ function BasketPage() {
       name: name,
     });
     axios
-      .delete(`baskets?productId=${productId}&quantity=${quantity}`)
+      .delete(
+        `/api/baskets/${getInfo.id}?productId=${productId}&quantity=${quantity}`
+      )
       .then(() => removeItem(productId, quantity))
       .catch((err) => console.log(err))
       .finally(() => setStatus({ loading: false, name }));
   };
 
-  if (!basket) {
-    return <Typography variant="h3">Basket is empty</Typography>;
-  }
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(`/api/baskets/${getInfo.id}`)
+      .then((data) => setData(data?.data?.basketItem));
+  }, [callApi]);
+  console.log(data);
+
+  // if (!basket) {
+  //   return <Typography variant="h3">Basket is empty</Typography>;
+  // }
   return (
     <>
       <Navigator />
@@ -75,7 +97,7 @@ function BasketPage() {
             <TableHead>
               <TableRow>
                 <TableCell>Product</TableCell>
-                <TableCell>Image</TableCell>
+                {/* <TableCell>Image</TableCell> */}
                 <TableCell align="right">Price</TableCell>
                 <TableCell align="center">Quantity</TableCell>
                 <TableCell align="right">Subtotal</TableCell>
@@ -83,7 +105,7 @@ function BasketPage() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {basket.basketItems.map((row: BasketItem) => (
+              {data.map((row: BasketItem) => (
                 <TableRow
                   key={row.productId}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -91,13 +113,10 @@ function BasketPage() {
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>
-                  {/* <TableCell component="th" scope="row">
-                  {row.imageUrl}
-                </TableCell> */}
+
                   <TableCell align="right">$ {row.price}</TableCell>
 
                   <TableCell align="center">
-                    {/* Button Remove */}
                     <LoadingButton
                       loading={
                         status.loading &&
@@ -114,10 +133,8 @@ function BasketPage() {
                     >
                       <RemoveCircle />
                     </LoadingButton>
-                    {/* row. quantity */}
                     {row.quantity}
 
-                    {/* Button Add */}
                     <LoadingButton
                       loading={
                         status.loading && status.name === "add" + row.productId
@@ -164,8 +181,15 @@ function BasketPage() {
           <BasketSummary />
 
           <Button
-            component={Link}
-            to="/checkout"
+            onClick={async () => {
+              let rs = await axios.post(`/pay`, {
+                userId: getInfo.id,
+                orderId: 2,
+              });
+              window.location.href = rs?.data;
+              // "https://www.sandbox.paypal.com/cgi-bin/we…?cmd=_express-checkout&token=EC-46B13212DF466853P";
+              console.log(rs.data);
+            }}
             variant="contained"
             size="large"
             fullWidth
