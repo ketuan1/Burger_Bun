@@ -17,6 +17,7 @@ import Products from "../Admin/Products/Products";
 import Register from "../components/Register/Register";
 import Login from "../components/Login/Login";
 import AddProducts from "../Admin/Products/AddProducts";
+import ManageAcc from "../Admin/ManageAcc";
 
 function App() {
   const { setBasket } = useContext(StoreContext);
@@ -71,6 +72,7 @@ function App() {
         {getInfo?.role?.toUpperCase() === "ADMIN" && (
           <>
             <Route path="/admin/homes" element={<Homes />} />
+            <Route path="/account" element={<ManageAcc />} />
             <Route path="/admin/test" element={<Test />} />
             <Route path="/admin/products" element={<Products />} />
             <Route path="/add" element={<AddProducts />} />

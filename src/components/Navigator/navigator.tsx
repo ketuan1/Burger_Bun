@@ -95,16 +95,21 @@ function Navigator() {
                     </Badge>
                   </Link>
                 </li>
-                <li className="nav-item @@register__active">
-                  <Link className="nav-link" to="/register">
-                    Register
-                  </Link>
-                </li>
-                <li className="nav-item @@login__active">
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
-                </li>
+                {
+                  getInfo === null && <>
+                    <li className="nav-item @@register__active">
+                      <Link className="nav-link" to="/register">
+                        Register
+                      </Link>
+                    </li>
+                    <li className="nav-item @@login__active">
+                      <Link className="nav-link" to="/login">
+                        Login
+                      </Link>
+                    </li></>
+
+                }
+
                 {getInfo !== null && (
                   <li className="nav-item @@logout__active">
                     <Link
@@ -116,6 +121,16 @@ function Navigator() {
                       }}
                     >
                       Logout
+                    </Link>
+                  </li>
+                )}
+                {getInfo !== null && (
+                  <li className="nav-item @@logout__active">
+                    <Link
+                      className="nav-link"
+                      to="/"
+                    >
+                      {getInfo?.email}
                     </Link>
                   </li>
                 )}
