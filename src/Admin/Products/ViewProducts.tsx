@@ -11,9 +11,9 @@ function ViewProducts() {
     name: "",
     price: 0,
     description: "",
-    category: "",
-    image_url: "",
-    units_in_stock: 0,
+    category: 0,
+    imageUrl: "",
+    unitsInStock: 0,
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function ViewProducts() {
 
   const viewProducts = async () => {
     const resultView = await axios.get(
-      `http://localhost:8080/api/list/product/${id}`
+      `http://localhost:8080/api/list/products/${id}`
     );
     setProduct(resultView.data);
   };

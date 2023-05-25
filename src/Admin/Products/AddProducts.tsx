@@ -27,7 +27,7 @@ export default function AddProducts() {
       name: "",
       price: 0,
       description: "",
-      category: "",
+      category: 0,
       imageUrl: "",
       unitsInStock: 0,
     },
@@ -39,9 +39,7 @@ export default function AddProducts() {
       description: Yup.string()
         .min(2, "Description to short")
         .max(100, "Description so long!"),
-      category: Yup.string()
-        .min(3, "Category must be 3 character!")
-        .required("Category is required!"),
+      category: Yup.number().required("Category is required!"),
       unitsInStock: Yup.number().required("Units in stock is required"),
     }),
     onSubmit: async (values, e: any) => {
@@ -144,21 +142,20 @@ export default function AddProducts() {
             )}
 
             {/* category list */}
-            <FormControl fullWidth>
-              <NativeSelect
-                defaultValue={30}
-                inputProps={{
-                  name: "age",
-                  id: "uncontrolled-native",
-                }}
-              >
-                {category.map((value, index) => (
-                  <option key={index} value={value.id}>
-                    {value.categoryName}
-                  </option>
-                ))}
-              </NativeSelect>
-            </FormControl>
+
+            <NativeSelect
+              defaultValue={30}
+              inputProps={{
+                name: "age",
+                id: "uncontrolled-native",
+              }}
+            >
+              {category.map((value, index) => (
+                <option key={index} value={value.id}>
+                  {value.categoryName}
+                </option>
+              ))}
+            </NativeSelect>
 
             <Input
               sx={{ mb: 2 }}
@@ -193,7 +190,12 @@ export default function AddProducts() {
         </form>
       </Container>
       <Box>
-        <Button variant="contained" component={Link} to={"/"} sx={{ mt: 4 }}>
+        <Button
+          variant="contained"
+          component={Link}
+          to={"/admin/products"}
+          sx={{ mt: 4 }}
+        >
           Go back
         </Button>
       </Box>

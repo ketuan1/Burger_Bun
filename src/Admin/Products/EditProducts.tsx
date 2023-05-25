@@ -16,7 +16,7 @@ export default function EditProducts() {
     name: "",
     price: 0,
     description: "",
-    category: "",
+    category: 0,
     imageUrl: "",
     unitsInStock: 0,
   });
@@ -27,7 +27,7 @@ export default function EditProducts() {
       name: product.name ?? "",
       price: product.price ?? "",
       description: product.description ?? "",
-      category: product.category ?? "",
+      category: product.category ?? 0,
       imageUrl: product.imageUrl,
       unitsInStock: product.unitsInStock ?? 0,
     },

@@ -1,7 +1,6 @@
 import Navigator from "../Navigator/navigator";
 import "../Menu/menu.css";
 import Footer from "../Footer/footer";
-import ProductCard from "../Catalog/ProductCard";
 import { Link } from "react-router-dom";
 import AllMenu from "./allMenu";
 

@@ -67,12 +67,17 @@ function BasketPage() {
       .delete(
         `/api/baskets/${getInfo.id}?productId=${productId}&quantity=${quantity}`
       )
-      .then(() => removeItem(productId, quantity))
+      .then(() => {
+        removeItem(productId, quantity);
+        setCallApi(!callApi);
+      })
       .catch((err) => console.log(err))
       .finally(() => setStatus({ loading: false, name }));
   };
 
   const [data, setData] = useState<any[]>([]);
+
+  // api call basket
 
   useEffect(() => {
     axios
@@ -98,10 +103,10 @@ function BasketPage() {
               <TableRow>
                 <TableCell>Product</TableCell>
                 {/* <TableCell>Image</TableCell> */}
-                <TableCell align="right">Price</TableCell>
+                <TableCell align="center">Price</TableCell>
                 <TableCell align="center">Quantity</TableCell>
-                <TableCell align="right">Subtotal</TableCell>
-                <TableCell align="right">Action</TableCell>
+                <TableCell align="center">Subtotal</TableCell>
+                {/* <TableCell align="right">Action</TableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -148,7 +153,7 @@ function BasketPage() {
                     </LoadingButton>
                   </TableCell>
 
-                  <TableCell align="right">
+                  <TableCell align="center">
                     $ {(row.price * row.quantity).toFixed(2)}
                   </TableCell>
                   <TableCell align="right">

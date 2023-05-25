@@ -6,7 +6,6 @@ import Contact from "../components/Contact/contact";
 import Home from "../components/Home/home";
 import Menu from "../components/Menu/menu";
 import "./App.css";
-import Catalog from "../components/Catalog/Catalog";
 import BasketPage from "../Basket/BasketPage";
 import { getCookie } from "../util/util";
 import axios, { AxiosResponse } from "axios";
@@ -48,7 +47,10 @@ function App() {
   if (loading) {
     return <Loading />;
   }
-  const getInfo = sessionStorage.getItem('KEY_ACCOUNT') !== null ? JSON.parse(sessionStorage.getItem('KEY_ACCOUNT') as string) : null
+  const getInfo =
+    sessionStorage.getItem("KEY_ACCOUNT") !== null
+      ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
+      : null;
   return (
     <div className="App">
       <Routes>
@@ -64,7 +66,6 @@ function App() {
             />
             <Route path="/menu" element={<Menu />} />
             <Route path="/basket" element={<BasketPage />} />
-            <Route path="/catalog" element={<Catalog />} />
           </>
         )}
         {getInfo?.role?.toUpperCase() === "ADMIN" && (

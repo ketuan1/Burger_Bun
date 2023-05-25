@@ -39,7 +39,10 @@ function Navigator() {
       setIsDarkMode(false);
     }
   }
-  const getInfo = sessionStorage.getItem('KEY_ACCOUNT') !== null ? JSON.parse(sessionStorage.getItem('KEY_ACCOUNT') as string) : null
+  const getInfo =
+    sessionStorage.getItem("KEY_ACCOUNT") !== null
+      ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
+      : null;
   return (
     <>
       <header id="site-header" className="fixed-top">
@@ -66,7 +69,7 @@ function Navigator() {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <Link className="nav-link" to="/" >
+                  <Link className="nav-link" to="/">
                     Home <span className="sr-only">(current)</span>
                   </Link>
                 </li>
@@ -102,47 +105,20 @@ function Navigator() {
                     Login
                   </Link>
                 </li>
-                {
-                  getInfo !== null && <li className="nav-item @@logout__active">
-                    <Link className="nav-link" to="/" onClick={() => {
-                      sessionStorage.removeItem('KEY_ACCOUNT')
-                      window.location.reload()
-                    }}>
+                {getInfo !== null && (
+                  <li className="nav-item @@logout__active">
+                    <Link
+                      className="nav-link"
+                      to="/"
+                      onClick={() => {
+                        sessionStorage.removeItem("KEY_ACCOUNT");
+                        window.location.reload();
+                      }}
+                    >
                       Logout
                     </Link>
                   </li>
-                }
-
-                {/* <div className="search-right">
-                  <a href="#search" title="search">
-                    <span className="fa fa-search" aria-hidden="true"></span>
-                  </a>
-                  <div id="search" className="pop-overlay">
-                    <div className="popup">
-                      <h4 className="mb-3">Search here</h4>
-                      <form
-                        action="error.html"
-                        method="GET"
-                        className="search-box"
-                      >
-                        <input
-                          type="search"
-                          placeholder="Enter Keyword"
-                          name="search"
-                        />
-                        <button
-                          type="submit"
-                          className="btn btn-style btn-primary"
-                        >
-                          Search
-                        </button>
-                      </form>
-                    </div>
-                    <a className="close" href="#close">
-                      ×
-                    </a>
-                  </div>
-                </div> */}
+                )}
               </ul>
             </div>
             <div className="mobile-position">
