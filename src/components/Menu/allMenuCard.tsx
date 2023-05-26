@@ -11,12 +11,14 @@ interface Props {
 function AllMenuCard(props: Props) {
   const { setBasket } = useContext(StoreContext);
   const [loading, setLoading] = useState(false);
-
+  const getInfo = sessionStorage.getItem("KEY_ACCOUNT") !== null
+    ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
+    : null;
   const handleAddItem = (productId: number) => {
     setLoading(true);
-    // ${userInfo.id}
+    console.log(`${getInfo.id}`);
     axios
-      .post(`baskets?productId=${productId}&quantity=1`, {})
+      .post(`http://localhost:8080/api/baskets/${getInfo.id}?productId=${productId}&quantity=1`, {})
       .then((response: AxiosResponse) => setBasket(response.data))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));

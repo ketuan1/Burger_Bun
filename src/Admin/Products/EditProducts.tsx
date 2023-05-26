@@ -5,12 +5,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Product } from "../../model/product";
+import { Category } from "../../model/category";
 
 export default function EditProducts() {
+  const { productId } = useParams<Record<string, string>>();
   let navigate = useNavigate();
-
-  const { productId } = useParams();
-
+  
   const [product, setProduct] = useState<Product>({
     id: 0,
     name: "",
@@ -20,41 +20,46 @@ export default function EditProducts() {
     imageUrl: "",
     unitsInStock: 0,
   });
-
+  async function fetchData(){
+    try {
+      const response = await axios.get(`http://localhost:8080/api/products/${productId}`)
+      setProduct( response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   const formik = useFormik<Product>({
     initialValues: {
-      id: product.id ?? 0,
-      name: product.name ?? "",
-      price: product.price ?? "",
-      description: product.description ?? "",
-      category: product.category ?? 0,
+      id: product.id ,
+      name: product.name ,
+      price: product.price ,
+      description: product.description ,
+      category: product.category ,
       imageUrl: product.imageUrl,
-      unitsInStock: product.unitsInStock ?? 0,
+      unitsInStock: product.unitsInStock ,
     },
     validationSchema: Yup.object({
-      title: Yup.string()
-        .min(3, "Title must be 3 character!")
-        .required("Title is required!"),
+      name: Yup.string()
+        .min(3, "Name must be 3 character!")
+        .required("Name is required!"),
+      price: Yup.number().required("Price is required"),
       description: Yup.string()
         .min(2, "Description to short")
         .max(100, "Description so long!"),
-      unitPrice: Yup.number().required("Price is required"),
+      unitsInStock: Yup.number().required("Units in stock is required"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, e: any) => {
       await axios
-        .put(`http://localhost:8080/api/product/update/${productId}`, values)
+        .put(`http://localhost:8080/api/products/update/${productId}`, values)
         .catch((err) => console.log(err.data));
-      navigate("/");
+      navigate("/admin/products");
     },
     enableReinitialize: true,
   });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/product/${productId}`)
-      .then((res) => setProduct(res.data))
-      .catch((err) => console.log(err.data));
-  }, [product]);
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -64,7 +69,7 @@ export default function EditProducts() {
         <Typography component="h1" variant="h3" sx={{ mb: 2 }}>
           Edit Products Form
         </Typography>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}  encType="multipart/form-data">
           <FormControl>
             <TextField
               sx={{ mb: 2, width: 500 }}
@@ -115,24 +120,6 @@ export default function EditProducts() {
                 {formik.errors.description}
               </Typography>
             )}
-
-            <TextField
-              multiline
-              sx={{ mb: 2 }}
-              id="outlined-multiline-static"
-              rows={4}
-              label="Category"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              name="category"
-              value={formik.values.category}
-            />
-            {formik.errors.category && formik.touched.category && (
-              <Typography style={{ color: "#eb4034", margin: "0 20px 10px" }}>
-                {formik.errors.category}
-              </Typography>
-            )}
-
             <TextField
               sx={{ mb: 2 }}
               id="outlined-required"
@@ -141,7 +128,7 @@ export default function EditProducts() {
               onBlur={formik.handleBlur}
               type="number"
               inputProps={{ min: "0.50", step: "0.01" }}
-              name="Units Stock"
+              name="unitsInStock"
               value={formik.values.unitsInStock}
             />
             {formik.errors.unitsInStock && formik.touched.unitsInStock && (

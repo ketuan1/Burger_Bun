@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function ViewProducts() {
-  const { id } = useParams();
+  const { id } =  useParams<Record<string, string>>();;
   const [product, setProduct] = useState<Product>({
     id: 0,
     name: "",
@@ -21,9 +21,7 @@ function ViewProducts() {
   }, []);
 
   const viewProducts = async () => {
-    const resultView = await axios.get(
-      `http://localhost:8080/api/list/products/${id}`
-    );
+    const resultView = await axios.get(`http://localhost:8080/api/products/${id}`);
     setProduct(resultView.data);
   };
   return (

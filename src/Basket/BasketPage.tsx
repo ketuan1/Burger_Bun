@@ -64,11 +64,11 @@ function BasketPage() {
       name: name,
     });
     axios
-      .delete(
-        `/api/baskets/${getInfo.id}?productId=${productId}&quantity=${quantity}`
+      .post(
+        `/api/baskets/${getInfo.id}?productId=${productId}&quantity=-${quantity}`
       )
-      .then(() => {
-        removeItem(productId, quantity);
+      .then((response) => {
+        setBasket(response.data);
         setCallApi(!callApi);
       })
       .catch((err) => console.log(err))

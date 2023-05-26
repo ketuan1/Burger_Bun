@@ -37,7 +37,7 @@ export default function Products() {
       <SiderBar />
       <Container>
         <Box sx={{ marginBottom: 2, textAlign: "center" }}>
-          <Button variant="contained" component={Link} to={"/add"}>
+          <Button variant="contained" component={Link} to={"./add"}>
             Add Products
           </Button>
         </Box>
@@ -91,9 +91,23 @@ export default function Products() {
                       }}
                       variant="contained"
                       component={Link}
-                      to={`/update/${product.id}`}
+                      to={`./update/${product.id}`}
                     >
                       Edit
+                    </Button>
+                    <Button
+                      sx={{
+                        backgroundColor: "purple",
+                        marginRight: 2,
+                        "&.MuiButtonBase-root:hover": {
+                          backgroundColor: "purple",
+                        },
+                      }}
+                      variant="contained"
+                      component={Link}
+                      to={`./view/${product.id}`}
+                    >
+                      View
                     </Button>
                     <Button
                       sx={{

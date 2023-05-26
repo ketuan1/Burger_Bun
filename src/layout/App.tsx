@@ -17,6 +17,12 @@ import Products from "../Admin/Products/Products";
 import Register from "../components/Register/Register";
 import Login from "../components/Login/Login";
 import AddProducts from "../Admin/Products/AddProducts";
+import EditProducts from "../Admin/Products/EditProducts";
+import ViewProducts from "../Admin/Products/ViewProducts";
+import Categories from "../Admin/Categories/Categories";
+import AddCategories from "../Admin/Categories/AddCategories";
+import EditCategories from "../Admin/Categories/EditCategories";
+import ViewCategories from "../Admin/Categories/ViewCategories";
 
 function App() {
   const { setBasket } = useContext(StoreContext);
@@ -73,7 +79,13 @@ function App() {
             <Route path="/admin/homes" element={<Homes />} />
             <Route path="/admin/test" element={<Test />} />
             <Route path="/admin/products" element={<Products />} />
-            <Route path="/add" element={<AddProducts />} />
+            <Route path="/admin/products/add" element={<AddProducts />} />
+            <Route path="/admin/products/update/:productId" element={<EditProducts />} />
+            <Route path="/admin/products/view/:id" element={<ViewProducts />} />
+            <Route path="/admin/categories" element={<Categories />} />
+            <Route path="/admin/categories/add" element={<AddCategories />} />
+            <Route path="/admin/categories/update/:categoriesId" element={<EditCategories />} />
+            <Route path="/admin/categories/view/:categoriesId" element={<ViewCategories />} />
           </>
         )}
         {/* admin */}

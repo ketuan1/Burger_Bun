@@ -39,19 +39,17 @@ export default function AddProducts() {
       description: Yup.string()
         .min(2, "Description to short")
         .max(100, "Description so long!"),
-      category: Yup.number().required("Category is required!"),
+      category: Yup.number().required("Category is required!").min(1),
       unitsInStock: Yup.number().required("Units in stock is required"),
     }),
     onSubmit: async (values, e: any) => {
-      const pathString = "C:\\fakepath\\";
-      values.imageUrl = values.imageUrl.replace(pathString, "");
-
+      const bodyData = { ...values,categoryId : values.category}
       await axios
-        .post(`http://localhost:8080/api/products/add`, values)
+        .post(`http://localhost:8080/api/products/add`, bodyData)
         .then((res) => console.log(res))
         .catch((err) => console.log(err.data));
 
-      navigate("/");
+      navigate("/admin/products");
     },
     enableReinitialize: true,
   });
@@ -144,19 +142,23 @@ export default function AddProducts() {
             {/* category list */}
 
             <NativeSelect
-              defaultValue={30}
-              inputProps={{
-                name: "age",
-                id: "uncontrolled-native",
-              }}
-            >
-              {category.map((value, index) => (
-                <option key={index} value={value.id}>
+               {...formik.getFieldProps('category')}
+               id="category"
+               onChange={formik.handleChange}
+             >
+              <option value="0"> -- select -- </option>
+              {category.map((value) => (
+                <option value={value.id}>
                   {value.categoryName}
                 </option>
               ))}
+              
             </NativeSelect>
-
+            {formik.errors.category && formik.touched.category && (
+              <Typography style={{ color: "#eb4034", margin: "0 20px 10px" }}>
+                {formik.errors.category}
+              </Typography>
+            )}
             <Input
               sx={{ mb: 2 }}
               name="imageUrl"

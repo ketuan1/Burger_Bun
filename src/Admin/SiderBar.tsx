@@ -22,7 +22,7 @@ function SiderBar() {
         <Link to="/order" className="icon-a">
           <i className="fa fa-shopping-bag icons"></i> &nbsp;&nbsp;Orders
         </Link>
-        <Link to="/admin/category" className="icon-a">
+        <Link to="/admin/categories" className="icon-a">
           <i className="fa fa-tasks icons"></i> &nbsp;&nbsp;Category
         </Link>
         <Link to="/account" className="icon-a">
