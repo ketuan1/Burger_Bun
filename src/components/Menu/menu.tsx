@@ -76,20 +76,6 @@ function Menu() {
             </div>
           </section>
 
-          {/* list menu category end */}
-          <div className="container py-lg-5 py-md-4 py-2">
-            <div className="mb-3 mx-3">
-              <h2>title</h2>
-            </div>
-
-            {/* products card */}
-            <div className="grids-area-hny main-cont-wthree-fea row">
-              <div className="col-lg-3 col-md-6 grids-feature">
-                {/* <ProductCard /> */}
-              </div>
-            </div>
-          </div>
-
           <AllMenu />
         </section>
       </div>
