@@ -1,16 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../image/lg.png";
 import { ShoppingCart } from "@mui/icons-material";
 import "../Navigator/navigator.css";
 import { StoreContext } from "../../context/StoreContext";
 import { Badge } from "@mui/material";
-
 function Navigator() {
   // dark more
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { basket } = useContext(StoreContext);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const currentTheme = localStorage.getItem("theme");
 
@@ -114,10 +113,10 @@ function Navigator() {
                   <li className="nav-item @@logout__active">
                     <Link
                       className="nav-link"
-                      to="./"
+                      to="/"
                       onClick={() => {
                         sessionStorage.removeItem("KEY_ACCOUNT");
-                        window.location.reload();
+                        navigate('/');
                       }}
                     >
                       Logout
