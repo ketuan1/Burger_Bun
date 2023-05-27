@@ -23,6 +23,7 @@ import Categories from "../Admin/Categories/Categories";
 import AddCategories from "../Admin/Categories/AddCategories";
 import EditCategories from "../Admin/Categories/EditCategories";
 import ViewCategories from "../Admin/Categories/ViewCategories";
+import ManageAcc from "../Admin/ManageAcc";
 
 function App() {
   const { setBasket } = useContext(StoreContext);
@@ -77,15 +78,25 @@ function App() {
         {getInfo?.role?.toUpperCase() === "ADMIN" && (
           <>
             <Route path="/admin/homes" element={<Homes />} />
+            <Route path="/account" element={<ManageAcc />} />
             <Route path="/admin/test" element={<Test />} />
             <Route path="/admin/products" element={<Products />} />
             <Route path="/admin/products/add" element={<AddProducts />} />
-            <Route path="/admin/products/update/:productId" element={<EditProducts />} />
+            <Route
+              path="/admin/products/update/:productId"
+              element={<EditProducts />}
+            />
             <Route path="/admin/products/view/:id" element={<ViewProducts />} />
             <Route path="/admin/categories" element={<Categories />} />
             <Route path="/admin/categories/add" element={<AddCategories />} />
-            <Route path="/admin/categories/update/:categoriesId" element={<EditCategories />} />
-            <Route path="/admin/categories/view/:categoriesId" element={<ViewCategories />} />
+            <Route
+              path="/admin/categories/update/:categoriesId"
+              element={<EditCategories />}
+            />
+            <Route
+              path="/admin/categories/view/:categoriesId"
+              element={<ViewCategories />}
+            />
           </>
         )}
         {/* admin */}
