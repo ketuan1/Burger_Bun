@@ -11,14 +11,18 @@ interface Props {
 function AllMenuCard(props: Props) {
   const { setBasket } = useContext(StoreContext);
   const [loading, setLoading] = useState(false);
-  const getInfo = sessionStorage.getItem("KEY_ACCOUNT") !== null
-    ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
-    : null;
+  const getInfo =
+    sessionStorage.getItem("KEY_ACCOUNT") !== null
+      ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
+      : null;
   const handleAddItem = (productId: number) => {
     setLoading(true);
     console.log(`${getInfo.id}`);
     axios
-      .post(`http://localhost:8080/api/baskets/${getInfo.id}?productId=${productId}&quantity=1`, {})
+      .post(
+        `http://localhost:8080/api/baskets/${getInfo.id}?productId=${productId}&quantity=1`,
+        {}
+      )
       .then((response: AxiosResponse) => setBasket(response.data))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
@@ -38,12 +42,12 @@ function AllMenuCard(props: Props) {
           <h4>$ {props.product.price.toFixed(2)}</h4>
         </div>
         {/* <p>{props.product.description}</p> */}
-        {/* {props.product.unitPrice < 20 && (
+        {props.product.price < 200 && (
           <div className="home-product-item__sale-off">
             <span className="home-product-item__sale-off-percent">10%</span>
-            <span className="home-product-item__sale-off-lable">Giam</span>
+            <span className="home-product-item__sale-off-lable">discount</span>
           </div>
-        )} */}
+        )}
         <div>
           <LoadingButton
             className="button_custom"
