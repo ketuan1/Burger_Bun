@@ -87,13 +87,16 @@ function Navigator() {
                     Contact
                   </Link>
                 </li>
-                <li className="nav-item @@basket__active">
-                  <Link className="nav-link" to="/basket">
-                    <Badge badgeContent={itemCount} color="secondary">
-                      <ShoppingCart />
-                    </Badge>
-                  </Link>
-                </li>
+                {getInfo !== null && (
+                  <li className="nav-item @@basket__active">
+                    <Link className="nav-link" to="/basket">
+                      <Badge badgeContent={itemCount} color="secondary">
+                        <ShoppingCart />
+                      </Badge>
+                    </Link>
+                  </li>
+                )}
+
                 {getInfo == null && (
                   <>
                     <li className="nav-item @@register__active">
@@ -116,7 +119,7 @@ function Navigator() {
                       to="/"
                       onClick={() => {
                         sessionStorage.removeItem("KEY_ACCOUNT");
-                        navigate('/');
+                        navigate("/");
                       }}
                     >
                       Logout
