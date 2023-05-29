@@ -23,6 +23,7 @@ import Categories from "../Admin/Categories/Categories";
 import AddCategories from "../Admin/Categories/AddCategories";
 import EditCategories from "../Admin/Categories/EditCategories";
 import ViewCategories from "../Admin/Categories/ViewCategories";
+import ManageAcc from "../Admin/ManageAcc";
 
 function App() {
   const { setBasket } = useContext(StoreContext);
@@ -77,6 +78,7 @@ function App() {
         {getInfo?.role?.toUpperCase() === "ADMIN" && (
           <>
             <Route path="/admin/homes" element={<Homes />} />
+            <Route path="/account" element={<ManageAcc />} />
             <Route path="/admin/test" element={<Test />} />
             <Route path="/admin/products" element={<Products />} />
             <Route path="/admin/products/add" element={<AddProducts />} />

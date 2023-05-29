@@ -43,7 +43,9 @@ export default function AddProducts() {
       unitsInStock: Yup.number().required("Units in stock is required"),
     }),
     onSubmit: async (values, e: any) => {
-      const bodyData = { ...values,categoryId : values.category}
+      let bodyData = { ...values,categoryId : values.category}
+      bodyData.imageUrl = values.imageUrl.replace('C:\\fakepath\\','')
+      debugger
       await axios
         .post(`http://localhost:8080/api/products/add`, bodyData)
         .then((res) => console.log(res))

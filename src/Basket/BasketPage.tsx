@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import BasketSummary from "./BasketSumary";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AddCircle, Delete, RemoveCircle } from "@mui/icons-material";
 import { StoreContext } from "../context/StoreContext";
 import axios, { AxiosResponse } from "axios";
@@ -29,7 +29,7 @@ function BasketPage() {
     loading: false,
     name: "",
   });
-
+  const navigate = useNavigate();
   const getInfo =
     sessionStorage.getItem("KEY_ACCOUNT") !== null
       ? JSON.parse(sessionStorage.getItem("KEY_ACCOUNT") as string)
@@ -84,8 +84,9 @@ function BasketPage() {
       .get(`/api/baskets/${getInfo.id}`)
       .then((data) => setData(data?.data?.basketItem));
   }, [callApi]);
-  console.log(data);
-
+  let totalSum = [...data].reduce((acc, total) => {
+    return acc + total?.price * total?.quantity;
+  }, 0);
   // if (!basket) {
   //   return <Typography variant="h3">Basket is empty</Typography>;
   // }
@@ -189,7 +190,7 @@ function BasketPage() {
             onClick={async () => {
               let rs = await axios.post(`/pay`, {
                 userId: getInfo.id,
-                orderId: 2,
+                total: totalSum + Number(5),
               });
               window.location.href = rs?.data;
               // "https://www.sandbox.paypal.com/cgi-bin/we…?cmd=_express-checkout&token=EC-46B13212DF466853P";
