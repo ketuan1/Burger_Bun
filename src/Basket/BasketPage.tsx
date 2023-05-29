@@ -53,6 +53,28 @@ function BasketPage() {
       .finally(() => setStatus({ loading: false, name }));
   };
 
+  // //remove basket
+  // const handleRemoveItem = (
+  //   productId: number,
+  //   quantity: number,
+  //   name: string
+  // ) => {
+  //   setStatus({
+  //     loading: true,
+  //     name: name,
+  //   });
+  //   axios
+  //     .delete(
+  //       `/api/baskets/${getInfo.id}?productId=${productId}&quantity=${quantity}`
+  //     )
+  //     .then(() => {
+  //       removeItem(productId, quantity);
+  //       setCallApi(!callApi);
+  //     })
+  //     .catch((err) => console.log(err))
+  //     .finally(() => setStatus({ loading: false, name }));
+  // };
+
   //remove basket
   const handleRemoveItem = (
     productId: number,
@@ -64,11 +86,11 @@ function BasketPage() {
       name: name,
     });
     axios
-      .delete(
-        `/api/baskets/${getInfo.id}?productId=${productId}&quantity=${quantity}`
+      .post(
+        `/api/baskets/${getInfo.id}?productId=${productId}&quantity=-${quantity}`
       )
-      .then(() => {
-        removeItem(productId, quantity);
+      .then((response) => {
+        setBasket(response.data);
         setCallApi(!callApi);
       })
       .catch((err) => console.log(err))

@@ -27,6 +27,8 @@ function AllMenuCard(props: Props) {
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };
+  console.log(props.product.name);
+
   return (
     <>
       <div className="area-box are-box__custom">
